@@ -15,19 +15,22 @@
 
 ## Screenshots
 
-<table>
+<div align="center">
+<table align="center">
   <tr>
-    <td align="center"><img src="docs/images/01_launch.jpg" width="200" alt="LaunchScreen"><br><sub>LaunchScreen</sub></td>
+    <td align="center"><img src="docs/images/01_launch.jpg" width="200" alt="Launch screen"><br><sub>Launch screen</sub></td>
     <td align="center"><img src="docs/images/02_home.jpg" width="200" alt="Home"><br><sub>Home</sub></td>
-    <td align="center"><img src="docs/images/03_add.jpg" width="200" alt="Add"><br><sub>Add a reminder</sub></td>
+    <td align="center"><img src="docs/images/03_add.jpg" width="200" alt="Add"><br><sub>Add a subscription</sub></td>
+    <td align="center"><img src="docs/images/04_detail.jpg" width="200" alt="Details"><br><sub>Details</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/images/04_detail.jpg" width="200" alt="details"><br><sub>Details</sub></td>
-    <td align="center"><img src="docs/images/05_calendar.jpg" width="200" alt="Calender"><br><sub>Calender</sub></td>
+    <td align="center"><img src="docs/images/05_calendar.jpg" width="200" alt="Calendar"><br><sub>Calendar</sub></td>
     <td align="center"><img src="docs/images/06_insights.jpg" width="200" alt="Insights"><br><sub>Insights</sub></td>
-    <td align="center"><img src="docs/images/07_notification.png" width="200" alt="Notification"><br><sub>Notification</sub></td>
+    <td align="center"><img src="docs/images/07_notification.png" width="200" alt="Notification"><br><sub>Reminder notification</sub></td>
+    <td></td>
   </tr>
 </table>
+</div>
 
 ## Features
 
@@ -39,6 +42,57 @@
 - Pause, resume, mark as cancelled, swipe to delete with undo
 - English, French and Arabic with full right-to-left layout; designed light and dark themes
 - Private by design: no account, no server, no analytics, no internet permission
+
+## Quick start
+
+You need [Flutter](https://docs.flutter.dev/get-started/install) (3.38.1 or newer) and an Android phone or emulator.
+
+1. Get the code
+
+```
+git clone https://github.com/goucem-meriem-malak/remindini.git
+cd remindini
+flutter pub get
+```
+
+2. Run
+
+```
+flutter run
+```
+
+That is all. Remindini needs **no Firebase, no API keys and no accounts**. Everything is stored on the phone, so there is nothing secret to configure.
+
+Run the tests:
+
+```
+flutter test
+```
+
+Build an APK to share with friends (small, one file per CPU type):
+
+```
+flutter build apk --release --split-per-abi
+```
+
+The files are in `build/app/outputs/flutter-apk/`. Send `app-arm64-v8a-release.apk`; it works on almost every modern phone.
+
+<details>
+<summary>Android icon or notifications look wrong, or the <code>android</code> folder is missing</summary>
+
+```
+flutter create --org com.gmm --project-name remindini .
+dart run tool/patch_platforms.dart
+dart run flutter_launcher_icons
+dart run flutter_native_splash:create
+flutter clean
+flutter run
+```
+
+The patch script adds the notification permissions and receivers and copies the notification icon. If the launcher still shows an old icon, uninstall the app from the phone first, then run it again.
+</details>
+
+More detail, including design decisions and known limitations, is in [docs/DOCUMENTATION.md](https://github.com/goucem-meriem-malak/remindini/blob/main/docs/DOCUMENTATION.md).
 
 ## Tech stack
 
@@ -69,12 +123,10 @@ docs/                        documentation, security checklist, legal drafts
 
 ## Status
 
-Honest list. Written and reviewed by reading; **not run, not compiled and not tested on a device** by the author of this code. The first `flutter analyze` and `flutter test` on your machine are the real checks. See `docs/SECURITY_CHECKLIST.md`.
+Tested by the owner on an Android phone. The iOS build has not been tested. Unit tests for dates, totals and storage are in `test/` (run `flutter test`). Security notes: `docs/SECURITY_CHECKLIST.md`.
 
 Payments are **not** implemented (see `docs/DOCUMENTATION.md`).
 
 ## License
 
 MIT, see `LICENSE`. Credits: logo and design direction by the owner.
-
-Setup steps: see [SETUP.md](SETUP.md).

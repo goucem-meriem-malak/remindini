@@ -90,11 +90,20 @@ bool _icons(Directory from, Directory to) {
     final target = Directory('${to.path}${Platform.pathSeparator}$name')..createSync(recursive: true);
     for (final file in d.listSync().whereType<File>()) {
       final dest = File('${target.path}${Platform.pathSeparator}${file.path.split(Platform.pathSeparator).last}');
-      if (!dest.existsSync()) {
-        file.copySync(dest.path);
+      final bytes = file.readAsBytesSync();
+      if (!dest.existsSync() || !_same(dest.readAsBytesSync(), bytes)) {
+        dest.writeAsBytesSync(bytes);
         copied = true;
       }
     }
   }
   return copied;
+}
+
+bool _same(List<int> a, List<int> b) {
+  if (a.length != b.length) return false;
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] != b[i]) return false;
+  }
+  return true;
 }
