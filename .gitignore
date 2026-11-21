@@ -1,0 +1,44 @@
+# Secrets and keys (this app needs none, but never commit these)
+.env
+.env.*
+!.env.example
+secrets/
+!secrets/*.example.json
+keys.json
+*.pem
+*.key
+*.p12
+*.pfx
+google-services.json
+GoogleService-Info.plist
+firebase_options.dart
+serviceAccount*.json
+firebase-adminsdk*.json
+
+# Android / iOS signing
+*.jks
+*.keystore
+key.properties
+*.mobileprovision
+local.properties
+
+# Flutter / Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+*.log
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec_overrides.yaml
+
+# IDE and OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+SETUP.md
