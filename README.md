@@ -127,7 +127,6 @@ Tested by the owner on an Android phone. The iOS build has not been tested. Unit
 
 Payments are **not** implemented (see `docs/DOCUMENTATION.md`).
 
-
 ## License
 
 MIT, see `LICENSE`. Credits: logo and design direction by the owner.
